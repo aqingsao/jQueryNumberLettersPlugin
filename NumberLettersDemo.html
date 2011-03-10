@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            max-width: 998px;
+        }
+
+        span.error {
+            font-style: italic;
+            font-weight: bold;
+            color: red;
+        }
+
+        div.validationCase {
+            padding: 20px 15px 0;
+            border: 1px solid;
+            background: none repeat scroll 0 0 #EEEEEE;
+            margin-bottom:15px;
+        }
+        div.validationCase p{
+            font-style:italic;
+        }
+
+    </style>
+    <script type="text/javascript" src="./javascript/jquery-1.5.js"></script>
+    <script type="text/javascript" src="./javascript/jquery.numberLetters.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("input.letters").letters();
+            $("input.lettersAndSpace").lettersAndSpace();
+            $("input.numberLetters").numberLetters();
+            $("input.numberLettersAndSpace").numberLettersAndSpace();
+            // $("input.numbers").numbers();
+            // $("input.decimal").decimal();
+        }); 
+    </script>
+</head>
+<body>
+<div>
+    <h1>A list of html input boxes to limit user input</h1>
+
+    <div style="color:#a52a2a;"><strong>Note: Only numbers(0-9) and letters(a-z, A-Z) are allowed.</strong></div>
+    <div class="validationCases">
+        <h2>
+            Case 1: Letters
+        </h2>
+
+        <div class="validationCase">
+            <form action="./NumberLetter.html">
+                <label>Letters Only:</label>
+                <input type="text" class="letters" name="name" maxlength="20" value="only letters here"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumberLetter.html">
+                <label>Letters And Space:</label>
+                <input type="text" class="lettersAndSpace" name="name" maxlength="20" value="only letters and space"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumberLetter.html">
+                <label>Number Letters:</label>
+                <input type="text" class="numberLetters" name="name" maxlength="20" value="only letters here"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumberLetter.html">
+                <label>Number Letters And Space:</label>
+                <input type="text" class="numberLettersAndSpace" name="name" maxlength="20" value="only letters and space"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumberLetter.html" id="validateAfterAll">
+                <label>Numbers Only:</label>
+                <input type="text" class="numbers" name="name" maxlength="20" value="only numbers here"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumberLetter.html">
+                <label>Integer:</label>
+                <input type="text" class="integer" name="name" maxlength="20" value="This is invalid text"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumberLetter.html">
+                <label>Positive Integer:</label>
+                <input type="text" class="positiveInteger" name="name" maxlength="20" value="This is invalid text"/>
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+
+    <div class="validationCases">
+        <h2>
+            Case 2: Decimal
+        </h2>
+
+        <div class="validationCase">
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>Decimal:</label>
+                <input name="name" type="decimal" class="letters" maxlength="20"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>Decimal With 3 Points:</label>
+                <input name="name" type="decimalWith2Point" class="letters" maxlength="20"/>
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+    <div class="validationCases">
+        <h2>
+            Case 3: Integer
+        </h2>
+
+        <div class="validationCase">
+        </div>
+    </div>
+</div>
+</body>
+</html>
