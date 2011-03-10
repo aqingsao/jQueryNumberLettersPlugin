@@ -33,7 +33,8 @@
             $("input.lettersAndSpace").lettersAndSpace();
             $("input.numberLetters").numberLetters();
             $("input.numberLettersAndSpace").numberLettersAndSpace();
-            // $("input.numbers").numbers();
+            
+			$("input.ip").ip();
             // $("input.decimal").decimal();
         }); 
     </script>
@@ -45,7 +46,7 @@
     <div style="color:#a52a2a;"><strong>Note: Only numbers(0-9) and letters(a-z, A-Z) are allowed.</strong></div>
     <div class="validationCases">
         <h2>
-            Case 1: Letters
+            Case 1: Number and Letters
         </h2>
 
         <div class="validationCase">
@@ -74,7 +75,16 @@
                 <input type="text" class="numbers" name="name" maxlength="20" value="only numbers here"/>
                 <input type="submit" value="Submit"/>
             </form>
-            <form action="./NumberLetter.html">
+        </div>
+    </div>
+
+    <div class="validationCases">
+        <h2>
+            Case 2: Integer
+        </h2>
+
+        <div class="validationCase">
+	        <form action="./NumberLetter.html">
                 <label>Integer:</label>
                 <input type="text" class="integer" name="name" maxlength="20" value="This is invalid text"/>
                 <input type="submit" value="Submit"/>
@@ -84,15 +94,14 @@
                 <input type="text" class="positiveInteger" name="name" maxlength="20" value="This is invalid text"/>
                 <input type="submit" value="Submit"/>
             </form>
-        </div>
+         </div>
     </div>
-
     <div class="validationCases">
         <h2>
-            Case 2: Decimal
+            Case 3: Decimal
         </h2>
 
-        <div class="validationCase">
+        <div class="validationCase">    
             <form action="./NumericInput.html" id="validateAfterSingle">
                 <label>Decimal:</label>
                 <input name="name" type="decimal" class="letters" maxlength="20"/>
@@ -107,10 +116,25 @@
     </div>
     <div class="validationCases">
         <h2>
-            Case 3: Integer
+            Case 3: Common Used
         </h2>
 
-        <div class="validationCase">
+        <div class="validationCase">    
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>Email:</label>
+                <input name="name" type="text" class="email" maxlength="20"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>IP:</label>
+                <input name="name" type="text" class="ip" maxlength="20"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>Url:</label>
+                <input name="name" type="text" class="url" maxlength="20"/>
+                <input type="submit" value="Submit"/>
+            </form>
         </div>
     </div>
 </div>

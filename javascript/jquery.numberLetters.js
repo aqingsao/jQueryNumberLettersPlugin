@@ -13,25 +13,34 @@
 		return this.each(function(){checkByReg($(this), options, /^[0-9a-zA-Z ]*$/)});
     };
     $.fn.numbers = function(options) {
-		return this.each(function(){checkByReg(options, /^[0-9]*$/)});
+		return this.each(function(){checkByReg($(this), options, /^[0-9]*$/)});
     };
 
     $.fn.email = function(options) {
-		return this.each(function(){checkByReg(options, /^[0-9]*$/)});
+		return this.each(function(){checkByReg($(this), options, /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)});
     };
     $.fn.url = function(options) {
-		return this.each(function(){checkByReg(options, /^[0-9]*$/)});
+		return this.each(function(){checkByReg($(this), options, /^[a-zA-z]+:\/\/[^\s]*$/)});
+    };
+    $.fn.ip = function(options) {
+		// var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.?$|^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.?$|^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.?$|^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+		var basic = "([1-9]|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])";
+		var firstSection = basic;
+		var secondSection = basic + "\\." + basic;
+		var thirdSection = basic + "\\." + basic + "\\." + basic;
+		var fourthSection = basic + "\\." + basic + "\\." + basic + "\\." + basic;
+		var reg = new RegExp("^" + firstSection +"\\.?|" + secondSection +"\\.?|" + thirdSection + "\\.?|" + fourthSection + "$");
+		return this.each(function(){checkByReg($(this), options, reg)});
     };
 
-
 	$.fn.integer = function(options){
-		return this.each(function(){checkByReg(options, /^-?\d+$/)});
+		return this.each(function(){checkByReg($(this), options, /^-?\d+$/)});
 	}
 	$.fn.positiveInteger = function(options){
-		return this.each(function(){checkByReg(options, /^[0-9]*[1-9][0-9]*$/)});
+		return this.each(function(){checkByReg($(this), options, /^[0-9]*[1-9][0-9]*$/)});
 	}
     $.fn.decimal = function(options) {		
-        return this.each(function(){checkByReg(options, /^[-]$|^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,}$/)});
+        return this.each(function(){checkByReg($(this), options, /^[-]$|^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,}$/)});
 	};
 
 	function checkByReg(input, options, reg){
