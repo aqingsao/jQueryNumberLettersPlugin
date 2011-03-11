@@ -42,6 +42,9 @@
 			$("input.ip").ip();
             $("input.email").email();
             $("input.money").money();
+
+            $("input.lettersWithPaste").letters({pasteAllowed:true});
+
         }); 
     </script>
 </head>
@@ -144,6 +147,19 @@
             <form action="./NumericInput.html" id="validateAfterSingle">
                 <label>Money:</label>
                 <input name="name" type="text" class="money" maxlength="20"/>
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+    <div class="validationCases">
+        <h2>
+            Case 5: Custmize
+        </h2>
+
+        <div class="validationCase">    
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>Paste:</label>
+                <input name="name" type="text" class="lettersWithPaste" maxlength="20"/>
                 <input type="submit" value="Submit"/>
             </form>
         </div>
