@@ -16,8 +16,14 @@
 		return this.each(function(){checkByReg($(this), options, /^[0-9]*$/)});
     };
 
-    $.fn.email = function(options) {
-		return this.each(function(){checkByReg($(this), options, /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)});
+    $.fn.email = function(options) {				
+		var firstSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@?$";//a, a@
+		var secondSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.]?$";//a@b, a@b.
+		var thirdSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{1,3}$";
+		var fourthSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}[\\.]?$";
+		var fifthSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}([\\.][a-z]{1,2})?$";
+		var reg = new RegExp(firstSection +"|" + secondSection +"|" + thirdSection + "|" + fourthSection + "|" + fifthSection, "i");
+		return this.each(function(){checkByReg($(this), {}, reg)});
     };
     $.fn.url = function(options) {
 		return this.each(function(){checkByReg($(this), options, /^[a-zA-z]+:\/\/[^\s]*$/)});
@@ -64,7 +70,7 @@
 				// Should handle this case
 			}
 			var newVal = getNewVal(e.target, key);
-			if(reg.test(newVal)){
+			if(newVal == "" || reg.test(newVal)){
 				return;
 			}
 				
