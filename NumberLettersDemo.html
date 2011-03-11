@@ -33,9 +33,15 @@
             $("input.lettersAndSpace").lettersAndSpace();
             $("input.numberLetters").numberLetters();
             $("input.numberLettersAndSpace").numberLettersAndSpace();
+            $("input.numbers").numbers();
+
+            $("input.integer").integer();
+
+            $("input.decimal").decimal();
             
 			$("input.ip").ip();
             $("input.email").email();
+            $("input.money").money();
         }); 
     </script>
 </head>
@@ -90,8 +96,13 @@
                 <input type="submit" value="Submit"/>
             </form>
             <form action="./NumberLetter.html">
-                <label>Positive Integer:</label>
+                <label>Positive Integer(TBD):</label>
                 <input type="text" class="positiveInteger" name="name" maxlength="20" value="This is invalid text"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumberLetter.html">
+                <label>Integer With Range(TBD):</label>
+                <input type="text" class="integerWithRange" name="name" maxlength="20" value="This is invalid text"/>
                 <input type="submit" value="Submit"/>
             </form>
          </div>
@@ -104,12 +115,12 @@
         <div class="validationCase">    
             <form action="./NumericInput.html" id="validateAfterSingle">
                 <label>Decimal:</label>
-                <input name="name" type="decimal" class="letters" maxlength="20"/>
+                <input name="name" type="text" class="decimal" maxlength="20"/>
                 <input type="submit" value="Submit"/>
             </form>
             <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>Decimal With 3 Points:</label>
-                <input name="name" type="decimalWith2Point" class="letters" maxlength="20"/>
+                <label>Decimal With 2 Points(TBD):</label>
+                <input name="name" type="text" class="decimalWith2Point" maxlength="20"/>
                 <input type="submit" value="Submit"/>
             </form>
         </div>
@@ -131,8 +142,8 @@
                 <input type="submit" value="Submit"/>
             </form>
             <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>Url:</label>
-                <input name="name" type="text" class="url" maxlength="20"/>
+                <label>Money:</label>
+                <input name="name" type="text" class="money" maxlength="20"/>
                 <input type="submit" value="Submit"/>
             </form>
         </div>

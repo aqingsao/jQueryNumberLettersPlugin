@@ -10,7 +10,7 @@
 		return this.each(function(){checkByReg($(this), options, /^[0-9a-zA-Z]*$/)});
     };
     $.fn.numberLettersAndSpace = function(options) {
-		return this.each(function(){checkByReg($(this), options, /^[0-9a-zA-Z ]*$/)});
+		return this.each(function(){checkByReg($(this), options, /^[0-9a-zA-Z\s]*$/)});
     };
     $.fn.numbers = function(options) {
 		return this.each(function(){checkByReg($(this), options, /^[0-9]*$/)});
@@ -25,6 +25,14 @@
 		var reg = new RegExp(firstSection +"|" + secondSection +"|" + thirdSection + "|" + fourthSection + "|" + fifthSection, "i");
 		return this.each(function(){checkByReg($(this), {}, reg)});
     };
+
+	$.fn.integer = function(options){
+		return this.each(function(){checkByReg($(this), options, /^-?\d+$/)});
+	}
+    $.fn.decimal = function(options) {		
+        return this.each(function(){checkByReg($(this), options, /^[-]$|^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,}$/)});
+	};
+
     $.fn.url = function(options) {
 		return this.each(function(){checkByReg($(this), options, /^[a-zA-z]+:\/\/[^\s]*$/)});
     };
@@ -40,15 +48,8 @@
 		var options = {_specialKeyRevalidated : [8]};//Delete key must be revalidated, as will might violate reg
 		return this.each(function(){checkByReg($(this), options, reg)});
     };
-
-	$.fn.integer = function(options){
-		return this.each(function(){checkByReg($(this), options, /^-?\d+$/)});
-	}
-	$.fn.positiveInteger = function(options){
-		return this.each(function(){checkByReg($(this), options, /^[0-9]*[1-9][0-9]*$/)});
-	}
-    $.fn.decimal = function(options) {		
-        return this.each(function(){checkByReg($(this), options, /^[-]$|^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,}$/)});
+    $.fn.money = function(options) {		
+        return this.each(function(){checkByReg($(this), options, /^[-]$|^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,2}$/)});
 	};
 
 	function checkByReg(input, options, reg){
@@ -76,9 +77,10 @@
 				
             e.preventDefault();
         });
-        input.bind('contextmenu', function () {
+		input.bind('contextmenu', function () {
           	return false;
         });
+ 		input.css('ime-mode', 'disabled');  
 	};
 	
 	function getNewVal(target, key){
