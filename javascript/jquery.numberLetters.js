@@ -42,8 +42,7 @@
 		var fourthSection = basic + "\\." + basic + "\\." + basic + "\\." + basic;
 		var reg = new RegExp(empty + "|^" + firstSection +"\\.?$|^" + secondSection +"\\.?$|^" + thirdSection + "\\.?$|^" + fourthSection + "$");
 		
-		var options = {_specialKeyRevalidated : [8]};//Delete key must be revalidated, as will might violate reg
-		return this.each(function(){checkByReg($(this), options, reg)});
+		return this.each(function(){checkByReg($(this), {}, reg)});
     };
     $.fn.money = function(options) {		
         return this.each(function(){checkByReg($(this), options, /^[-]$|^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,2}$/)});
@@ -51,19 +50,23 @@
 
 	function checkByReg(input, options, reg){
 		var defaultOptions = {
-			_specialKeyRevalidated : []
+			pasteAllowed: false
 		};
 		var options = $.extend(defaultOptions, options);
 		input.keypress(function (e) {
             var key = e.which;
+
             if (e.metaKey || e.ctrlKey) {
+				if(!options.pasteAllowed && (key == 86 || key == 118)){
+					e.preventDefault();
+				}
                 return;
             }
 
             if (isSpecialKey(key)){
 				return;
             }
-
+				
 			if(!reg.test(e.target.value)){
 				// Should handle this case
 			}
@@ -74,9 +77,12 @@
 				
             e.preventDefault();
         });
-		input.bind('contextmenu', function () {
-          	return false;
-        });
+
+		if(!options.pasteAllowed){
+			input.bind('contextmenu', function () {
+	          	return false;
+	        });
+		}
  		input.css('ime-mode', 'disabled');  
 	};
 	
