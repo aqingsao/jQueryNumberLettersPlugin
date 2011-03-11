@@ -16,6 +16,14 @@
 		return this.each(function(){checkByReg($(this), options, /^[0-9]*$/)});
     };
 
+	$.fn.integer = function(options){
+		return this.each(function(){checkByReg($(this), options, /^-?\d+$/)});
+	}
+	
+    $.fn.decimal = function(options) {		
+        return this.each(function(){checkByReg($(this), options, /^[-]$|^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,}$/)});
+	};
+
     $.fn.email = function(options) {				
 		var firstSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@?$";//a, a@
 		var secondSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.]?$";//a@b, a@b.
@@ -24,17 +32,6 @@
 		var fifthSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}([\\.][a-z]{1,2})?$";
 		var reg = new RegExp(firstSection +"|" + secondSection +"|" + thirdSection + "|" + fourthSection + "|" + fifthSection, "i");
 		return this.each(function(){checkByReg($(this), {}, reg)});
-    };
-
-	$.fn.integer = function(options){
-		return this.each(function(){checkByReg($(this), options, /^-?\d+$/)});
-	}
-    $.fn.decimal = function(options) {		
-        return this.each(function(){checkByReg($(this), options, /^[-]$|^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,}$/)});
-	};
-
-    $.fn.url = function(options) {
-		return this.each(function(){checkByReg($(this), options, /^[a-zA-z]+:\/\/[^\s]*$/)});
     };
     $.fn.ip = function(options) {
 		var basic = "([1-9]|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])";
