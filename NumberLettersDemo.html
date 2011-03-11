@@ -43,7 +43,9 @@
             $("input.email").email();
             $("input.money").money();
 
+            $("input.customRegexp").custom("^[abc123]*$");
             $("input.lettersWithPaste").letters({pasteAllowed:true});
+            $("input.validationOnDelete").ip({validationOnDelete: false});
 
         }); 
     </script>
@@ -158,8 +160,18 @@
 
         <div class="validationCase">    
             <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>Paste:</label>
+                <label>Custom Regexp("^[abc123]$"):</label>
+                <input name="name" type="text" class="customRegexp" maxlength="20"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>Paste to allowed:</label>
                 <input name="name" type="text" class="lettersWithPaste" maxlength="20"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <form action="./NumericInput.html" id="validationOnDelete">
+                <label>validationOnDelete to false:</label>
+                <input name="name" type="text" class="validationOnDelete" maxlength="20"/>
                 <input type="submit" value="Submit"/>
             </form>
         </div>
