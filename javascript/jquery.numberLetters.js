@@ -17,7 +17,7 @@
     };
 
 	$.fn.integer = function(options){
-		return this.each(function(){limitInput($(this), options, /^-?\d+$/)});
+		return this.each(function(){limitInput($(this), options, /^-?\d*$/)});
 	}
 	
     $.fn.decimal = function(options) {		
@@ -61,7 +61,7 @@
 		input.keypress(function (e) {
             var key = e.which;
 
-            if (isPasteKey(e)) {
+            if (isPasteKey(e, key)) {
 				if(!options.pasteAllowed){
 					e.preventDefault();
 				}
@@ -132,7 +132,7 @@
     function isDeleteKey(key) {
         return key == 8;
     }
-	function isPasteKey(e){
+	function isPasteKey(e, key){
 		return (e.metaKey || e.ctrlKey) && (key == 86 || key == 118);
 	}
 
