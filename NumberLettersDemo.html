@@ -50,7 +50,7 @@
             $("input.email").email();
             $("input.money").money();
 
-            $("input.customRegexp").custom("^[a-zA-Z0-9\\.\\-_]*$");
+            $("input.customRegexp").custom("^[A-Z]*$");
             $("input.lettersWithPaste").letters({pasteAllowed:true});
             $("input.validationOnDelete").ip({validationOnDelete: false});
 
@@ -138,7 +138,7 @@
             <form action="./NumericInput.html" id="validateAfterSingle">
                 <label>With Your Own Regexp:</label>
                 <input name="name" type="text" class="customRegexp" maxlength="20"/>
-				<span>Code: $("input.customRegexp").custom("^[a-zA-Z0-9\.-_]*$");;</span>
+				<span>Code: $("input.customRegexp").custom("^[A-Z]*$");;</span>
             </form>
             <form action="./NumericInput.html" id="validateAfterSingle">
                 <label>With Option pasteAllowed:</label>

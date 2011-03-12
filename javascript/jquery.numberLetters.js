@@ -48,8 +48,12 @@
         return this.each(function(){limitInput($(this), options, /^[-]$|^([-]){0,1}([0-9]){1,}([.]){0,1}([0-9]){0,2}$/)});
 	};
 
-    $.fn.custom = function(regexp, options) {		
-        return this.each(function(){limitInput($(this), options, new RegExp(regexp))});
+    $.fn.custom = function(regexp, options) {
+		var reg = regexp;
+		if(typeof(regexp) == 'string'){
+			reg = new RegExp(regexp);
+		}
+        return this.each(function(){limitInput($(this), options, reg)});
 	};
 
 	function limitInput(input, options, reg){
