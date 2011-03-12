@@ -2,10 +2,11 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title></title>
+    <title>jQueryNumberLettersPlugin</title>
     <style type="text/css">
         body {
             max-width: 998px;
+			margin: 0 auto;
         }
 
         span.error {
@@ -24,6 +25,14 @@
             font-style:italic;
         }
 
+		form label{
+			display:inline-block;
+			width: 220px;
+		}
+		form span{
+			font-style:italic;
+			color:gray;
+		}
     </style>
     <script type="text/javascript" src="./javascript/jquery-1.4.js"></script>
     <script type="text/javascript" src="./javascript/jquery.numberLetters.js"></script>
@@ -36,14 +45,12 @@
             $("input.numbers").numbers();
 
             $("input.integer").integer();
-
             $("input.decimal").decimal();
-            
 			$("input.ip").ip();
             $("input.email").email();
             $("input.money").money();
 
-            $("input.customRegexp").custom("^[abc123]*$");
+            $("input.customRegexp").custom("^[a-zA-Z0-9\\.\\-_]*$");
             $("input.lettersWithPaste").letters({pasteAllowed:true});
             $("input.validationOnDelete").ip({validationOnDelete: false});
 
@@ -52,127 +59,96 @@
 </head>
 <body>
 <div>
-    <h1>A list of html input boxes to limit user input</h1>
+    <h1>jQueryNumberLettersPlugin</h1>
 
     <div style="color:#a52a2a;"><strong>Note: Only numbers(0-9) and letters(a-z, A-Z) are allowed.</strong></div>
     <div class="validationCases">
         <h2>
-            Case 1: Number and Letters
+            Number and Letters
         </h2>
 
         <div class="validationCase">
             <form action="./NumberLetter.html">
                 <label>Letters Only:</label>
-                <input type="text" class="letters" name="name" maxlength="20" value="only letters here"/>
-                <input type="submit" value="Submit"/>
+                <input type="text" class="letters" name="name" maxlength="20" value=""/>
+				<span>Code: $("input.letters").letters();</span>
             </form>
             <form action="./NumberLetter.html">
                 <label>Letters And Space:</label>
-                <input type="text" class="lettersAndSpace" name="name" maxlength="20" value="only letters and space"/>
-                <input type="submit" value="Submit"/>
+                <input type="text" class="lettersAndSpace" name="name" maxlength="20" value=""/>
+				<span>Code: $("input.lettersAndSpace").lettersAndSpace();</span>
             </form>
             <form action="./NumberLetter.html">
                 <label>Number Letters:</label>
-                <input type="text" class="numberLetters" name="name" maxlength="20" value="only letters here"/>
-                <input type="submit" value="Submit"/>
+                <input type="text" class="numberLetters" name="name" maxlength="20" value=""/>
+				<span>Code: $("input.numberLetters").numberLetters();</span>
             </form>
             <form action="./NumberLetter.html">
                 <label>Number Letters And Space:</label>
-                <input type="text" class="numberLettersAndSpace" name="name" maxlength="20" value="only letters and space"/>
-                <input type="submit" value="Submit"/>
+                <input type="text" class="numberLettersAndSpace" name="name" maxlength="20" value=""/>
+				<span>Code: $("input.numberLettersAndSpace").numberLettersAndSpace();</span>
             </form>
             <form action="./NumberLetter.html" id="validateAfterAll">
                 <label>Numbers Only:</label>
-                <input type="text" class="numbers" name="name" maxlength="20" value="only numbers here"/>
-                <input type="submit" value="Submit"/>
+                <input type="text" class="numbers" name="name" maxlength="20" value=""/>
+				<span>Code: $("input.numbers").numbers();</span>
             </form>
         </div>
     </div>
 
     <div class="validationCases">
         <h2>
-            Case 2: Integer
+            Common Used Cases
         </h2>
 
         <div class="validationCase">
 	        <form action="./NumberLetter.html">
                 <label>Integer:</label>
-                <input type="text" class="integer" name="name" maxlength="20" value="This is invalid text"/>
-                <input type="submit" value="Submit"/>
+                <input type="text" class="integer" name="name" maxlength="20" value=""/>
+				<span>Code: $("input.integer").integer();</span>
             </form>
-            <form action="./NumberLetter.html">
-                <label>Positive Integer(TBD):</label>
-                <input type="text" class="positiveInteger" name="name" maxlength="20" value="This is invalid text"/>
-                <input type="submit" value="Submit"/>
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>Decimal:</label>
+                <input name="name" type="text" class="decimal" maxlength="20"/>
+				<span>Code: $("input.decimal").decimal();</span>
             </form>
-            <form action="./NumberLetter.html">
-                <label>Integer With Range(TBD):</label>
-                <input type="text" class="integerWithRange" name="name" maxlength="20" value="This is invalid text"/>
-                <input type="submit" value="Submit"/>
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>Email:</label>
+                <input name="name" type="text" class="email" maxlength="20"/>
+				<span>Code: $("input.email").email();</span>
+            </form>
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>IP:</label>
+                <input name="name" type="text" class="ip" maxlength="20"/>
+				<span>Code: $("input.ip").ip();</span>
+            </form>
+            <form action="./NumericInput.html" id="validateAfterSingle">
+                <label>Money:</label>
+                <input name="name" type="text" class="money" maxlength="20"/>
+				<span>Code: $("input.money").money();</span>
             </form>
          </div>
     </div>
     <div class="validationCases">
         <h2>
-            Case 3: Decimal
+            How to customize?
         </h2>
 
         <div class="validationCase">    
             <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>Decimal:</label>
-                <input name="name" type="text" class="decimal" maxlength="20"/>
-                <input type="submit" value="Submit"/>
-            </form>
-            <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>Decimal With 2 Points(TBD):</label>
-                <input name="name" type="text" class="decimalWith2Point" maxlength="20"/>
-                <input type="submit" value="Submit"/>
-            </form>
-        </div>
-    </div>
-    <div class="validationCases">
-        <h2>
-            Case 4: Common Used
-        </h2>
-
-        <div class="validationCase">    
-            <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>Email:</label>
-                <input name="name" type="text" class="email" maxlength="20"/>
-                <input type="submit" value="Submit"/>
-            </form>
-            <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>IP:</label>
-                <input name="name" type="text" class="ip" maxlength="20"/>
-                <input type="submit" value="Submit"/>
-            </form>
-            <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>Money:</label>
-                <input name="name" type="text" class="money" maxlength="20"/>
-                <input type="submit" value="Submit"/>
-            </form>
-        </div>
-    </div>
-    <div class="validationCases">
-        <h2>
-            Case 5: Custmize
-        </h2>
-
-        <div class="validationCase">    
-            <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>Custom Regexp("^[abc123]$"):</label>
+                <label>With Your Own Regexp:</label>
                 <input name="name" type="text" class="customRegexp" maxlength="20"/>
-                <input type="submit" value="Submit"/>
+				<span>Code: $("input.customRegexp").custom("^[a-zA-Z0-9\.-_]*$");;</span>
             </form>
             <form action="./NumericInput.html" id="validateAfterSingle">
-                <label>Paste to allowed:</label>
+                <label>With Option pasteAllowed:</label>
                 <input name="name" type="text" class="lettersWithPaste" maxlength="20"/>
-                <input type="submit" value="Submit"/>
+				<span>Code: $("input.lettersWithPaste").letters({pasteAllowed:true});</span>
             </form>
             <form action="./NumericInput.html" id="validationOnDelete">
-                <label>validationOnDelete to false:</label>
+                <label>With Option validationOnDelete:</label>
                 <input name="name" type="text" class="validationOnDelete" maxlength="20"/>
-                <input type="submit" value="Submit"/>
+				<span>Code: $("input.validationOnDelete").ip({validationOnDelete: false});</span>
             </form>
         </div>
     </div>

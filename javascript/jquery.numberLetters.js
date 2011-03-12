@@ -1,10 +1,10 @@
 (function($) {
 
     $.fn.letters = function(options) {
-		return this.each(function(){limitInput($(this), options, /^\w*$/)});
+		return this.each(function(){limitInput($(this), options, /^[a-zA-Z]*$/)});
     };
     $.fn.lettersAndSpace = function(options) {
-		return this.each(function(){limitInput($(this), options, /^[\w\s]*$/)});
+		return this.each(function(){limitInput($(this), options, /^[a-zA-Z\s]*$/)});
     };
     $.fn.numberLetters = function(options) {
 		return this.each(function(){limitInput($(this), options, /^[0-9a-zA-Z]*$/)});
@@ -27,9 +27,9 @@
     $.fn.email = function(options) {				
 		var firstSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@?$";//a, a@
 		var secondSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.]?$";//a@b, a@b.
-		var thirdSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{1,3}$";
-		var fourthSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}[\\.]?$";
-		var fifthSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}([\\.][a-z]{1,2})?$";
+		var thirdSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{1,3}$";a@b.com
+		var fourthSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}[\\.]?$";//a@b.com, a@b.com.
+		var fifthSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}([\\.][a-z]{1,2})?$";//a@b.com.cn
 		var reg = new RegExp(firstSection +"|" + secondSection +"|" + thirdSection + "|" + fourthSection + "|" + fifthSection, "i");
 		return this.each(function(){limitInput($(this), options, reg)});
     };
@@ -101,7 +101,7 @@
 	
 	function notValid(reg, newVal){
 		return newVal != "" && !reg.test(newVal);
-	}
+	}	
 	
 	function getNewVal(target, key){
 		var newChar = String.fromCharCode(key);
@@ -118,14 +118,6 @@
 		 return target.value.substring(0, target.selectionStart - 1) + target.value.substring(target.selectionEnd, target.textLength);
 	}
 	
-    function isNumber(key) {
-        return key >= 48 && key <= 57;
-    }
-
-    function isLetter(key) {
-        return (key >= 65 && key <= 90) || (key >= 97 && key <= 122);
-    }
-
     function isSpecialKey(key) {
         return key == 0 || key == 13 || key == 9;
     }
