@@ -61,8 +61,8 @@
 		input.keypress(function (e) {
             var key = e.which;
 
-            if (isPasteKey(e, key)) {
-				if(!options.pasteAllowed){
+            if (isCtrlOrMetaKey(e)) {
+				if(isPasteKey(e, key) && !options.pasteAllowed){
 					e.preventDefault();
 				}
                 return;
@@ -132,6 +132,9 @@
     function isDeleteKey(key) {
         return key == 8;
     }
+	function isCtrlOrMetaKey(e){
+		return e.metaKey || e.ctrlKey;
+	}
 	function isPasteKey(e, key){
 		return (e.metaKey || e.ctrlKey) && (key == 86 || key == 118);
 	}
