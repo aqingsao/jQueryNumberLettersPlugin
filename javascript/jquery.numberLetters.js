@@ -27,7 +27,7 @@
     $.fn.email = function(options) {				
 		var firstSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@?$";//a, a@
 		var secondSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.]?$";//a@b, a@b.
-		var thirdSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{1,3}$";a@b.com
+		var thirdSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{1,3}$";//a@b.com
 		var fourthSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}[\\.]?$";//a@b.com, a@b.com.
 		var fifthSection = "^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\\.][a-z]{2,3}([\\.][a-z]{1,2})?$";//a@b.com.cn
 		var reg = new RegExp(firstSection +"|" + secondSection +"|" + thirdSection + "|" + fourthSection + "|" + fifthSection, "i");
